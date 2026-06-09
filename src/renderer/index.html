@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; media-src * blob:; connect-src *;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CANLI TV TR</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand">
+          <div class="brand-mark">TV</div>
+          <div>
+            <h1>CANLI TV TR</h1>
+            <p id="channel-count">Kanallar yükleniyor…</p>
+          </div>
+        </header>
+
+        <label class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Kanal ara…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+
+        <div id="category-tabs" class="category-tabs" role="tablist"></div>
+
+        <ul id="channel-list" class="channel-list" role="listbox"></ul>
+      </aside>
+
+      <main class="player-pane">
+        <div class="player-header">
+          <div class="player-header-info">
+            <h2 id="now-playing-title">Kanal seçin</h2>
+            <p id="now-playing-meta">M3U8 akışı veya web yedek adresi</p>
+          </div>
+          <div class="player-header-actions">
+            <div class="channel-nav">
+              <button
+                type="button"
+                id="prev-channel"
+                class="channel-nav-btn"
+                title="Önceki kanal (↑)"
+                aria-label="Önceki kanal"
+              >
+                ‹ Önceki kanal
+              </button>
+              <button
+                type="button"
+                id="next-channel"
+                class="channel-nav-btn"
+                title="Sonraki kanal (↓)"
+                aria-label="Sonraki kanal"
+              >
+                Sonraki kanal ›
+              </button>
+            </div>
+            <span id="source-badge" class="source-badge">Hazır</span>
+          </div>
+        </div>
+
+        <div class="video-frame">
+          <video
+            id="video-player"
+            controls
+            controlslist="nofullscreen"
+            disablepictureinpicture
+            playsinline
+          ></video>
+          <div id="channel-banner" class="channel-banner" aria-live="polite">
+            <span id="channel-banner-name" class="channel-banner-name"></span>
+            <span id="channel-banner-cat" class="channel-banner-cat"></span>
+          </div>
+          <div id="player-overlay" class="player-overlay hidden">
+            <p id="player-status">Yayın başlatılıyor…</p>
+          </div>
+        </div>
+
+        <p id="stream-info" class="stream-info"></p>
+      </main>
+    </div>
+
+    <script src="vendor/hls.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

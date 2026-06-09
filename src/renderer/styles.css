@@ -1,0 +1,537 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --panel: #121a2b;
+  --panel-2: #1a2438;
+  --border: #2a3550;
+  --text: #eef2ff;
+  --muted: #9aa8c7;
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.18);
+  --danger: #f87171;
+  --success: #34d399;
+  --sidebar-width: 360px;
+  --radius: 14px;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.35);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  height: 100vh;
+  min-height: 540px;
+  overflow: hidden;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 14px 14px;
+  background: linear-gradient(180deg, #10182a 0%, #0d1424 100%);
+  border-right: 1px solid var(--border);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #c7d6ff, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-box:hover {
+  border-color: #34406a;
+}
+
+.search-box:focus-within {
+  border-color: var(--accent);
+  background: var(--panel-2);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.search-icon {
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.search-box:focus-within .search-icon {
+  color: var(--accent);
+}
+
+.search-box input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
+
+.category-tab {
+  flex: 0 0 auto;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.category-tab:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.category-tab:active {
+  transform: scale(0.96);
+}
+
+.category-tab.active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.channel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px 4px 0;
+  overflow-y: auto;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.channel-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: var(--panel);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.15s ease,
+    background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.channel-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.channel-item.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent), 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.channel-item:focus,
+.channel-item:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.channel-logo {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.channel-logo-letter {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.channel-logo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--panel-2);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.channel-logo.has-logo .channel-logo-img {
+  opacity: 1;
+}
+
+.channel-meta h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.channel-meta p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.player-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 18px 20px 16px;
+  gap: 12px;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+.player-header-info {
+  min-width: 0;
+}
+
+.player-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.channel-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.channel-nav-btn {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.channel-nav-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.channel-nav-btn:active {
+  transform: scale(0.97);
+}
+
+.channel-nav-btn:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.source-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.source-badge.live {
+  color: var(--success);
+  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.video-frame {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  background: #000;
+  border: 1px solid var(--border);
+  /* border-radius + overflow:hidden video düzlemini pencere modunda siyah
+     boyayabildiği için kırpmayı kaldırıp yuvarlatmayı doğrudan <video> ve
+     overlay'e uyguluyoruz. */
+  border-radius: var(--radius);
+}
+
+#video-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  border-radius: var(--radius);
+}
+
+.player-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 24px;
+  text-align: center;
+  border-radius: var(--radius);
+}
+
+.player-overlay.hidden {
+  display: none;
+}
+
+/* Kanal adı bandı (OSD). Kanal değişince kısa süre belirir; sinema modunda
+   header gizli olduğundan kanal adının görüldüğü tek yer budur. */
+.channel-banner {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: min(60%, 520px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(8, 12, 22, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--accent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2147483646;
+}
+
+.video-frame.show-banner .channel-banner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.channel-banner-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channel-banner-cat {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Sinema modunda banner biraz daha büyük ve okunaklı. */
+body.app-fullscreen .channel-banner {
+  top: 28px;
+  left: 28px;
+  padding: 14px 22px;
+}
+
+body.app-fullscreen .channel-banner-name {
+  font-size: 1.5rem;
+}
+
+body.app-fullscreen .channel-banner-cat {
+  font-size: 0.85rem;
+}
+
+/* Sinema modu (OS-düzeyi pencere fullscreen). Element-fullscreen yerine body
+   sınıfı ile kenar çubuğu + header gizlenip oynatıcı tüm pencereye yayılır.
+   Kontroller normal DOM olarak kaldığından tam ekranda güvenilir görünür. */
+body.app-fullscreen .app-shell {
+  grid-template-columns: 1fr;
+}
+
+body.app-fullscreen .sidebar,
+body.app-fullscreen .player-header {
+  display: none;
+}
+
+body.app-fullscreen .player-pane {
+  padding: 0;
+}
+
+body.app-fullscreen .video-frame {
+  border: 0;
+  border-radius: 0;
+}
+
+body.app-fullscreen #video-player {
+  border-radius: 0;
+}
+
+/* Akış URL'si (M3U8 linki) kullanıcıya gösterilmiyor; link paylaşımını
+   engellemek için tamamen gizli ve layout'ta yer kaplamıyor. */
+.stream-info {
+  display: none;
+}
+
+.channel-list::-webkit-scrollbar,
+.category-tabs::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.channel-list::-webkit-scrollbar-track,
+.category-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.channel-list::-webkit-scrollbar-thumb,
+.category-tabs::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.channel-list::-webkit-scrollbar-thumb:hover,
+.category-tabs::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vh 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}

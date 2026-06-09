@@ -1,0 +1,80 @@
+{
+  "name": "canli-tv-tr",
+  "productName": "CANLI TV TR",
+  "version": "1.0.0",
+  "description": "Turkish live TV channels for Windows and Microsoft Store",
+  "main": "src/main/main.js",
+  "author": "CANLI TV TR",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win",
+    "dist:msix": "electron-builder --win appx",
+    "postinstall": "node scripts/copy-hls.js"
+  },
+  "dependencies": {
+    "hls.js": "^1.6.2"
+  },
+  "devDependencies": {
+    "electron": "^35.1.5",
+    "electron-builder": "^26.0.12",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.34.5"
+  },
+  "build": {
+    "appId": "com.canlitvtr.app",
+    "productName": "CANLI TV TR",
+    "icon": "build/icon.ico",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "data/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "data",
+        "to": "data"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "appx",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "appx": {
+      "applicationId": "CANLITVTR",
+      "identityName": "CANLITVTR.CanliTvTr",
+      "publisher": "CN=00000000-0000-0000-0000-000000000000",
+      "publisherDisplayName": "CANLI TV TR",
+      "displayName": "CANLI TV TR",
+      "languages": [
+        "tr-TR",
+        "en-US"
+      ],
+      "showNameOnTiles": true,
+      "backgroundColor": "#0b1220",
+      "addAutoLaunchExtension": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
