@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CANLI TV TR — Gizlilik Politikası</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5c6370;
+      --accent: #c41e3a;
+      --border: #e2e5ea;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121418;
+        --card: #1c1f26;
+        --text: #eef0f3;
+        --muted: #9aa3b2;
+        --border: #2d3340;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .wrap {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2.5rem;
+    }
+    header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    main {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    h2 {
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    h2:first-child { margin-top: 0; }
+    p, ul { margin: 0 0 0.85rem; }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: var(--accent); }
+    .en {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .en h2 { font-size: 1rem; color: var(--muted); }
+    footer {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>CANLI TV TR — Gizlilik Politikası</h1>
+      <p class="meta">Geliştirici: MÜCAHİD KARAKAYA · Son güncelleme: 10 Haziran 2026</p>
+    </header>
+
+    <main>
+      <h2>1. Genel</h2>
+      <p>
+        CANLI TV TR (“Uygulama”), MÜCAHİD KARAKAYA tarafından geliştirilen ve Windows / Microsoft Store
+        üzerinden sunulan bir canlı TV izleme uygulamasıdır. Bu gizlilik politikası, Uygulamanın
+        kişisel verilerinizi nasıl işlediğini açıklar.
+      </p>
+
+      <h2>2. Toplanan kişisel veriler</h2>
+      <p>
+        <strong>Uygulama, kullanıcıdan kişisel veri toplamaz.</strong> Hesap oluşturma, kayıt, profil
+        veya kimlik doğrulama gerektirmez. Ad, e-posta, telefon numarası, konum veya cihaz kimliği
+        gibi bilgileri bilerek toplamıyoruz ve sunucularımıza göndermiyoruz.
+      </p>
+
+      <h2>3. Uygulama içi veri ve ağ kullanımı</h2>
+      <p>Uygulama aşağıdaki veri kaynaklarını kullanır:</p>
+      <ul>
+        <li>
+          <strong>Yerel kanal listesi:</strong> Uygulama paketine dahil edilen
+          <code>channels.json</code> ve <code>stream_map.json</code> dosyaları; kanal adları,
+          kategoriler ve yayın adresleri bu dosyalardan okunur.
+        </li>
+        <li>
+          <strong>M3U8 / HLS akışları:</strong> Seçtiğiniz kanalın canlı yayını için uygulama,
+          <code>stream_map.json</code> içindeki M3U8 adreslerine doğrudan bağlanır. Bu bağlantılar
+          üçüncü taraf yayın sağlayıcılarına gider.
+        </li>
+        <li>
+          <strong>Kanal logoları:</strong> Kanal simgeleri için Google Favicon API
+          (<code>www.google.com/s2/favicons</code>) kullanılır; ilgili kanalın web sitesi adresi
+          bu istekte yer alabilir.
+        </li>
+      </ul>
+      <p>
+        Arama ve son izlenen kanal gibi tercihler yalnızca cihazınızda, uygulama oturumu süresince
+        veya yerel depolama ile saklanabilir; bu bilgiler geliştiriciye iletilmez.
+      </p>
+
+      <h2>4. Üçüncü taraf yayın sağlayıcıları</h2>
+      <p>
+        Canlı yayınlar, Uygulama dışındaki üçüncü taraf sunuculardan sağlanır. Bu sağlayıcılar
+        kendi gizlilik uygulamalarına tabidir; IP adresiniz, cihaz bilgileriniz veya izleme
+        alışkanlıklarınız bu sunucular tarafından işlenebilir. Geliştirici, üçüncü taraf
+        sağlayıcıların veri işleme faaliyetlerinden sorumlu değildir.
+      </p>
+
+      <h2>5. Gelecekteki özellikler</h2>
+      <p>
+        Uygulamanın gelecek sürümlerinde reklam gösterimi veya Microsoft Store üzerinden
+        uygulama içi satın alma (IAP) — örneğin reklamsız premium — eklenebilir. Bu özellikler
+        devreye alındığında bu politika güncellenecek ve gerekli bilgilendirmeler yapılacaktır.
+        Şu anki sürümde reklam veya IAP bulunmamaktadır.
+      </p>
+
+      <h2>6. Çocuklar</h2>
+      <p>
+        Uygulama, 13 yaş altı çocuklardan bilerek kişisel veri toplamaz. Ebeveyn veya vasiler,
+        çocuklarının uygulamayı kullanımından sorumludur.
+      </p>
+
+      <h2>7. Politika değişiklikleri</h2>
+      <p>
+        Bu gizlilik politikası zaman zaman güncellenebilir. Güncel metin bu sayfada yayımlanır;
+        önemli değişikliklerde “son güncelleme” tarihi revize edilir.
+      </p>
+
+      <h2>8. İletişim</h2>
+      <p>
+        Gizlilik veya uygulama ile ilgili sorularınız için:
+        <a href="mailto:DESTEK_EPOSTA">DESTEK_EPOSTA</a>
+      </p>
+      <p style="font-size: 0.9rem; color: var(--muted);">
+        Not: Yayınlamadan önce <code>README.md</code> ve bu sayfadaki
+        <code>DESTEK_EPOSTA</code> yer tutucusunu gerçek destek e-posta adresinizle değiştirin.
+      </p>
+
+      <section class="en" lang="en">
+        <h2>English summary</h2>
+        <p>
+          <strong>CANLI TV TR</strong> is a live TV app for Windows by <strong>MÜCAHİD KARAKAYA</strong>.
+          We do <strong>not collect personal data</strong>. The app reads bundled
+          <code>channels.json</code> and <code>stream_map.json</code>, plays M3U8/HLS streams from
+          third-party broadcast servers, and may request channel icons via Google’s Favicon API.
+          Future versions may include ads or Microsoft Store in-app purchases; this policy will be
+          updated accordingly. Contact:
+          <a href="mailto:DESTEK_EPOSTA">DESTEK_EPOSTA</a>
+          (replace placeholder before publishing). Last updated: June 10, 2026.
+        </p>
+      </section>
+    </main>
+
+    <footer>© 2026 MÜCAHİD KARAKAYA — CANLI TV TR</footer>
+  </div>
+</body>
+</html>

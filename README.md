@@ -1,4 +1,4 @@
-# CANLI TV TR (Windows / Microsoft Store)
+﻿# CANLI TV TR (Windows / Microsoft Store)
 
 Windows masaüstü ve Microsoft Store sürümü. Android uygulamasındaki kanal listesi ve M3U8 akış haritasını kullanır.
 
@@ -83,7 +83,18 @@ npm run dist:msix
 5. Partner Center → **Packages** bölümüne MSIX yükleyin veya WinUI/Store pipeline ile imzalayın.
 6. Mağaza listesi: ekran görüntüleri (1366×768, 1920×1080), kısa/uzun açıklama, gizlilik politikası URL’si.
 
-> **Not:** `build.appx` içindeki `identityName` ve `publisher` değerlerini Partner Center kimliğinizle değiştirin. Yer tutucu GUID ile üretilen MSIX Store’a yüklenemez.
+> **Not:** Partner Center Product Identity değerleri (`identityName`, `publisher`, `publisherDisplayName`) `build.appx` içine eklendi; MSIX üretimi bu kimlikle yapılır.
+
+## Gizlilik politikası (GitHub Pages)
+
+Mağaza için gerekli gizlilik metni `docs/privacy.html` içindedir. Yayınlamadan önce dosyadaki `DESTEK_EPOSTA` yer tutucusunu gerçek destek adresinizle değiştirin (ör. `privacy@canlitvtr.com`).
+
+1. GitHub’da **public** repo oluşturun veya mevcut repoyu kullanın.
+2. `docs/` klasörünü repoya push edin (`git add docs`, `git commit`, `git push`).
+3. Repo → **Settings** → **Pages** → **Build and deployment** → Source: **Deploy from a branch**.
+4. Branch: `main` veya `master`, klasör: **`/docs`** → **Save**.
+5. Birkaç dakika sonra sayfa yayında olur: `https://KULLANICI.github.io/REPO-ADI/privacy.html`
+6. Partner Center → uygulama → **Özellikler** → **Gizlilik politikası URL’si** alanına bu adresi yapıştırın.
 
 ## MVP’de çalışan özellikler
 
@@ -144,6 +155,7 @@ Copy-Item "D:\PROJELER\ANDROİD TV UYGULAMASI2\app\src\main\assets\stream_map.js
 ```
 CANLI-TV-TR-MSStore/
   data/                 # channels.json, stream_map.json
+  docs/                 # privacy.html (GitHub Pages / Store)
   src/
     main/               # Electron main process
     renderer/           # UI + HLS player
@@ -151,11 +163,22 @@ CANLI-TV-TR-MSStore/
   README.md
 ```
 
+## GitHub Pages (Gizlilik Politikası)
+
+Microsoft Store Partner Center’da istenen gizlilik politikası URL’si için `docs/privacy.html` dosyası hazırdır.
+
+1. GitHub’da **public** bir depo oluşturun (ör. `CANLI-TV-TR-MSStore`).
+2. Bu projeyi depoya gönderin (`git remote add`, `git push`).
+3. Depo **Settings → Pages** bölümünde kaynak olarak **main** dalı ve klasör olarak **/docs** seçin.
+4. Birkaç dakika sonra sayfa yayında olur: `https://KULLANICI_ADINIZ.github.io/REPO_ADI/privacy.html`
+5. Yayınlamadan önce `docs/privacy.html` ve bu README’deki `DESTEK_EPOSTA` yer tutucusunu gerçek destek e-postanızla değiştirin.
+6. Oluşan URL’yi Partner Center → uygulama özellikleri → **Gizlilik politikası** alanına yapıştırın.
+
 ## Bilinen kısıtlar
 
 - İlk çalıştırmada `.NET SDK` olmadığı için WinUI/MAUI seçilmedi
 - `npm install` bu ortamda `$env:NODE_OPTIONS="--use-system-ca"` gerektirebilir (kurumsal SSL)
-- Store MSIX kimliği Partner Center’dan doldurulmalı (`build.appx`)
+- Store MSIX kimliği Partner Center değerleriyle uild.appx içinde tanımlı
 - MSIX üretimi Developer Mode veya yönetici symlink izni isteyebilir (`electron-builder` winCodeSign önbelleği)
 - Uygulama simgesi henüz yok (`build/icon.ico` eklendiğinde paket görünümü düzelir)
 - Bazı akışlar coğrafi veya ağ kısıtına tabi olabilir; failover yine de Android mantığıyla çalışır
