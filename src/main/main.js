@@ -1,6 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, net } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const { resolveCatalogFile, syncCatalog } = require("./catalog-sync");
 
 // Pencere modunda donanım hızlandırmalı <video> Chromium'da siyah render edilip
 // yalnızca tam ekranda görünebiliyor. Yazılım compositing'e düşürmek video
@@ -19,10 +20,26 @@ function dataRoot() {
   return path.join(process.resourcesPath, "data");
 }
 
+function catalogCacheDir() {
+  return path.join(app.getPath("userData"), "catalog");
+}
+
 function readJson(fileName) {
-  const filePath = path.join(dataRoot(), fileName);
-  const raw = fs.readFileSync(filePath, "utf8");
-  return JSON.parse(raw);
+  const bundled = path.join(dataRoot(), fileName);
+  const resolved = resolveCatalogFile(fileName, {
+    bundledDir: dataRoot(),
+    cacheDir: catalogCacheDir(),
+  });
+  const candidates = resolved === bundled ? [bundled] : [resolved, bundled];
+  let lastError;
+  for (const filePath of candidates) {
+    try {
+      return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError;
 }
 
 function createWindow() {
@@ -66,7 +83,21 @@ ipcMain.handle("toggle-fullscreen", () => {
   return next;
 });
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  // metadata.revision değişmediyse bile stream_map._revision daha yeniyse indir.
+  // Ağ hatası paketteki kataloğu kullanmaya düşer.
+  try {
+    const result = await syncCatalog({
+      bundledDir: dataRoot(),
+      cacheDir: catalogCacheDir(),
+      fetchImpl: (url, init) => net.fetch(url, init),
+      log: (message) => console.log(message),
+    });
+    console.log("[ota] sonuç", result);
+  } catch (error) {
+    console.warn("[ota] katalog senkronu atlandı:", error.message);
+  }
+
   createWindow();
 
   app.on("activate", () => {
