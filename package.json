@@ -12,6 +12,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --win",
     "dist:msix": "electron-builder --win appx",
+    "test": "node --test test/catalog-sync.test.js",
     "postinstall": "node scripts/copy-hls.js"
   },
   "dependencies": {

@@ -114,6 +114,13 @@
           kategoriler ve yayın adresleri bu dosyalardan okunur.
         </li>
         <li>
+          <strong>Katalog güncellemesi:</strong> Açılışta uygulama
+          <code>https://karakaya1745.github.io</code> üzerindeki
+          <code>metadata.json</code>, <code>stream_map.json</code> ve
+          <code>channels.json</code> dosyalarına bakabilir. Daha yeni bir katalog
+          varsa yalnızca bu cihaza kaydedilir. İstek hesap veya cihaz kimliği içermez.
+        </li>
+        <li>
           <strong>M3U8 / HLS akışları:</strong> Seçtiğiniz kanalın canlı yayını için uygulama,
           <code>stream_map.json</code> içindeki M3U8 adreslerine doğrudan bağlanır. Bu bağlantılar
           üçüncü taraf yayın sağlayıcılarına gider.
@@ -172,7 +179,9 @@
         <p>
           <strong>CANLI TV TR</strong> is a live TV app for Windows by <strong>MÜCAHİD KARAKAYA</strong>.
           We do <strong>not collect personal data</strong>. The app reads bundled
-          <code>channels.json</code> and <code>stream_map.json</code>, plays M3U8/HLS streams from
+          <code>channels.json</code> and <code>stream_map.json</code>, and may refresh
+          them from <code>https://karakaya1745.github.io</code> when a newer catalog is
+          published. It plays M3U8/HLS streams from
           third-party broadcast servers, and may request channel icons via Google’s Favicon API.
           Future versions may include ads or Microsoft Store in-app purchases; this policy will be
           updated accordingly. Contact:
